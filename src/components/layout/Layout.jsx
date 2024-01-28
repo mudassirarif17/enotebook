@@ -5,7 +5,7 @@ import NoteCard from '../noteCard/NoteCard';
 
 const Layout = ({children}) => {
   return (
-    <div className='flex flex-col md:flex-row'>
+    <div className=''>
 
       <div className='md:hidden'>
         <TopNavbar/>
@@ -15,7 +15,7 @@ const Layout = ({children}) => {
           <Sidebar/>
       </div>
       <div className='w-full'>
-        <NoteCard />
+        {children}
       </div>
     </div>
   )
