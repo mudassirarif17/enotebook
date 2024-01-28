@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className='flex flex-col md:flex-row'>
       <Layout/>
-      <div className='w-full'>
+      <div className='w-full overflow-auto'>
         <NoteCard />
       </div>
     </div>

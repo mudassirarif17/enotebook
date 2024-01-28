@@ -8,14 +8,14 @@ const Layout = ({children}) => {
     <div className=''>
 
       <div className='md:hidden'>
-        <TopNavbar/>
+        <TopNavbar className="sticky top-0"/>
       </div>
 
       <div className='hidden md:block'>
           <Sidebar/>
       </div>
       <div className='w-full'>
-        {children}
+        {/* {children} */}
       </div>
     </div>
   )

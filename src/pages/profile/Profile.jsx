@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../../components/layout/Layout'
+import { FaUserCircle } from "react-icons/fa";
 
 const Profile = () => {
   return (
@@ -7,7 +8,7 @@ const Profile = () => {
       <Layout/>
       <div className='w-full'>
         <div className='flex-col items-center flex mt-20'>
-          <div className='bg-gray-300 w-[100px] h-[100px] rounded-full'><h1 className='text-center'>dp</h1></div>
+          <h1 className='text-center text-6xl'><FaUserCircle className=''/></h1>
           <h3 className='text-2xl font-bold text-center'>Mudassir Arif</h3>
           <h6 className='font-semibold text-center'>mudassir@aptechgdn.net</h6>
         </div>
