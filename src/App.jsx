@@ -1,6 +1,7 @@
 import React from 'react';
 import myState from './context/data/mystate';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Home from "./pages/home/Home";
 import LogIn from "./pages/login/Login"
 import SignUp from "./pages/signUp/SignUp";
@@ -8,6 +9,7 @@ import AddNote from "./pages/addnote/AddNote";
 import Profile from "./pages/profile/Profile";
 import UpdateNote from "./pages/updateNote/UpdateNote";
 import NoPage from "./pages/nopage/NoPage";
+
 
 function App() {
   return (

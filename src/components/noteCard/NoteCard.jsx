@@ -2,8 +2,12 @@ import React from 'react'
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { FaTags } from "react-icons/fa";
+import { useNavigate } from 'react-router'
 
 const NoteCard = () => {
+
+  const navigate = useNavigate();
+  
   return (
     <div className='flex flex-col items-center h-[100vh]'>
 
@@ -15,7 +19,7 @@ const NoteCard = () => {
         <div className='flex justify-between mt-5'>
           <p className='flex items-center border border-black px-2  rounded-lg'><FaTags className='inline-block mx-1'/>Tag</p>
           <div className='flex space-x-2'>
-          <FaEdit className='text-2xl cursor-pointer active:text-gray-500'/>
+          <FaEdit onClick={()=>navigate("/updatenote")} className='text-2xl cursor-pointer active:text-gray-500'/>
           <MdDelete className='text-2xl cursor-pointer active:text-gray-500'/>
           </div>
         </div>
