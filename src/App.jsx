@@ -1,7 +1,6 @@
 import React from 'react';
-import myState from './context/data/mystate';
+import MyState from './context/data/MyState';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
 import Home from "./pages/home/Home";
 import LogIn from "./pages/login/Login"
 import SignUp from "./pages/signUp/SignUp";
@@ -14,7 +13,7 @@ import NoPage from "./pages/nopage/NoPage";
 function App() {
   return (
     <>
-    <myState>
+    <MyState>
         <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
@@ -22,11 +21,11 @@ function App() {
           <Route path='/login' element={<LogIn/>}/>
           <Route path='/addnote' element={<AddNote/>}/>
           <Route path='/profile' element={<Profile/>}/>
-          <Route path='/updateNote' element={<UpdateNote/>}/>
-          <Route path='*' element={<NoPage/>}/>
+          <Route path='/updateNote/:id' element={<UpdateNote/>}/>
+          {/* <Route path='*' element={<NoPage/>}/> */}
         </Routes>
         </BrowserRouter>
-    </myState>
+    </MyState>
     </>
   )
 }
