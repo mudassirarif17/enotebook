@@ -18,7 +18,11 @@ const NotesSchema = new Schema({
     },
     tag : {
         type : String,
-        default : "Gemeral"
+        default : "General"
+    },
+    alarm : {
+        type : Date,
+        required : true
     },
     date : {
         type : Date,

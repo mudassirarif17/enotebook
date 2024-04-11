@@ -25,9 +25,9 @@ router.get("/getallnotes" , fetchUser , async (req , res)=>{
 // Route 2 add note
 router.post("/addnote" , fetchUser , async (req , res)=>{
     try {
-        const {title , description , tag} = req.body;
+        const {title , description , tag , alarm} = req.body;
 
-        if(!title || !description || !tag){
+        if(!title || !description || !tag || !alarm){
             return res.status(400).json({error : "All fields are required"});
         }
         
@@ -35,6 +35,7 @@ router.post("/addnote" , fetchUser , async (req , res)=>{
             title,
             description,
             tag,
+            alarm,
             user : req.userId
         })
 

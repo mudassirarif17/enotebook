@@ -15,6 +15,9 @@ function MyState(props) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [tag, setTag] = useState("");
+    const [alarm, setAlarm] = useState("");
+
+    const [user, setUser] = useState([]);
 
 
 
@@ -52,7 +55,7 @@ function MyState(props) {
                 'Content-Type': "application/json",
                 'auth-token': localStorage.getItem("token")
             },
-            body: JSON.stringify({ title, description, tag })
+            body: JSON.stringify({ title, description, tag , alarm })
         })
 
         const noteData = await res.json();
@@ -122,8 +125,22 @@ function MyState(props) {
         }
     }
     
+    const userData = async () => {
+        const res = await fetch(`http://localhost:4000/api/auth/getuser`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': localStorage.getItem('token')
+          }
+        });
+    
+        let userData = await res.json();
+        // console.log(userData);
+        setUser(userData);
+      }
+
     return (
-        <myContext.Provider value={{ allnotes, searchnote , loading, getAllNotes, changeHandler , title, description, tag, setTitle, setDescription, setTag, addNote , deleteNote }}>
+        <myContext.Provider value={{ allnotes, searchnote , loading, getAllNotes, changeHandler , title, description, tag, setTitle, setDescription, setTag, addNote , deleteNote , user , setUser , userData , alarm , setAlarm }}>
             {props.children}
         </myContext.Provider>
     )
