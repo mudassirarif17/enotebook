@@ -2,8 +2,9 @@ import express from "express";
 const router = express.Router();
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import jwt, { decode } from "jsonwebtoken";
 import multer from "multer";
+import nodemailer from "nodemailer";
 
 // import "dotenv/config.js"
 import "dotenv/config.js"
@@ -128,5 +129,66 @@ router.get('/getuser' , fetchUser ,async (req , res)=>{
     }
 })
 
+// Forget Password code 
+router.post('/forget-password' , async (req ,res)=>{
+    const {email} = req.body;
+    const myemail = 'mudassirinoxent@gmail.com';
+    const mypass = 'lahoreqalandars';
+
+    const user = await User.findOne({email});
+    if(!user){
+        return res.status(400).json({error : "User Not Found"});
+    }
+    const token = jwt.sign({userId : user._id} , process.env.JWT_SECRET , {
+        expiresIn : "7d"
+    });
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: myemail,
+          pass: mypass
+        }
+      });
+    
+      var mailOptions = {
+        from: myemail,
+        to: email,
+        subject: 'Sending Email using Node.js',
+        text: `http://localhost:5173/reset-password/${user._id}/${token}`
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log("Error " , error);
+          return res.status(400).json({error : error})
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+})
+
+
+// Reset password code
+router.post("/reset-password/:id/:token" , async (req , res)=>{
+    const {id , token} = req.params;
+    const {password} = req.body;
+
+    jwt.verify(token , process.env.JWT_SECRET , async (err , decode) => {
+        if(err){
+            return res.json({error : "Error with token"})
+        }else{
+            const salt = await bcrypt.genSalt(10);
+            const hashedPass = await bcrypt.hash(password , salt);
+            const newPass = await User.findByIdAndUpdate({_id : id} , {password : hashedPass})
+            if(!newPass){
+                return res.status(400).json({error : "Password not updated"})
+            }
+            else{
+                res.status(200).json({success : "Password Updated"})
+            }
+        }
+    });
+})
 
 export default router;

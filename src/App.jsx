@@ -9,6 +9,8 @@ import Profile from "./pages/profile/Profile";
 import UpdateNote from "./pages/updateNote/UpdateNote";
 import NoPage from "./pages/nopage/NoPage";
 import Dashboard from './pages/dashboard/Dashboard';
+import Forgetpassword from './pages/forgetpassword/Forgetpassword';
+import Resetpassword from './pages/resetpassword/Resetpassword';
 
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route path='/addnote' element={<AddNote/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/forgot-password' element={<Forgetpassword/>}/>
+          <Route path='/reset-password' element={<Resetpassword/>}/>
           <Route path='/updateNote/:id' element={<UpdateNote/>}/>
           {/* <Route path='*' element={<NoPage/>}/> */}
         </Routes>

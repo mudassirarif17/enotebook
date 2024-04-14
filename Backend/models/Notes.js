@@ -21,7 +21,7 @@ const NotesSchema = new Schema({
         default : "General"
     },
     alarm : {
-        type : Date,
+        type : String,
         required : true
     },
     date : {
