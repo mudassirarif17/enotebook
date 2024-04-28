@@ -3,6 +3,7 @@ import Layout from '../../components/layout/Layout'
 import { FaUserCircle } from "react-icons/fa";
 import myContext from '../../context/data/mycontext';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   const context = useContext(myContext);
@@ -39,6 +40,7 @@ const Profile = () => {
           <div><img className='w-[200px] h-[200px] rounded-full mb-6' src={path+user.image} alt="some error"/></div>
           <h3 className='text-2xl font-bold text-center'>{user.name}</h3>
           <h6 className='font-semibold text-center'>{user.email}</h6>
+          <Link to="/updateprofile" className='btn bg-pink-600 text-white px-4 py-2 mt-2 rounded-lg text-lg font-semibold'>Update profile</Link>
         </div>
       </div>
 

@@ -129,6 +129,40 @@ router.get('/getuser' , fetchUser ,async (req , res)=>{
     }
 })
 
+// update profile end point 
+router.post('/updateuser/:id' , upload.single("image") , async (req , res)=>{
+    const {name , email } = req.body;
+    const {id} = req.params;
+    const imageName = req.file.filename;
+
+    try {
+        const user =  await User.findById({_id : id});
+
+        if(!user){
+            return res.status(404).send("Not Found")
+        }
+
+
+        console.log(user);
+
+        const users = await User.findByIdAndUpdate({_id : id} ,{ 
+            $set : {
+                image : imageName,
+                name ,
+                email ,
+            }
+    } , {new : true});
+
+    res.json({users , success : "User Profile Updated"})
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error : "Internal Server Error"});
+    }
+})
+
+
+
 // Forget Password code 
 router.post('/forget-password' , async (req ,res)=>{
     const {email} = req.body;
